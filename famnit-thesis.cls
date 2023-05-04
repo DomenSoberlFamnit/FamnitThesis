@@ -403,7 +403,7 @@
 % The macro to build the acknowledgemnts page.
 % If there is no acknowledgment, the macro has no effect.
 \newcommand{\page@acknowledgments}{
-    \ifdefined\@acknowledgements
+    \ifdefined\@acknowledgments
         \chapter*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
         {\@acknowledgments}
