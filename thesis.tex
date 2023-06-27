@@ -9,18 +9,18 @@
 % Add the bibliography.bib file with all the bibtex entries.
 
 % Import latex packages.
-\usepackage{ccicons} % Remove if CC symbols are not needed.
+\usepackage{ccicons} % Include if CC symbols are needed.
 
 % The basic thesis information.
 \title
-    {Naslov zaključne naloge}
-    {The title of the final project paper}
-    {Naslov v glavi dokumenta.}
+    {Naslov zaključne naloge} % Slovene title.
+    {The title of the final project paper} % English title.
+    {Naslov v glavi dokumenta.} % Title in the heading (with dot at the end).
 
-\author{Ime}{Priimek}{I. Priimek}
+\author{Ime}{Priimek}{Priimek I.}
 \studyprogram{Računalništvo in informatika}
 \mentor{prof. dr. Ime Mentorja}{Ime Mentorja, PhD}
-\date{september}{2022}
+\date{junij}{2023}
 
 % Additional thesis information. Remove if not used.
 \comentor{doc. dr. Ime Somentorja}{Ime Somentorja, PhD}
@@ -47,32 +47,11 @@
 % The acknowledgments.
 \acknowledgments
 {
-    Zahvaljujem se \ldots
+    Za naslovno stranjo (prva notranja stran), ki je stran s podatki oz. opisom uporabljenih licenc (če je zaključno delo izdano pod licencami), sledi zahvala. V njej se zahvalimo sodelujočim pri zaključni nalogi, osebam ali ustanovam, ki so nam pri delu pomagale ali so delo omogočile. Zahvalimo se lahko tudi mentorju in morebitnemu somentorju.
 }
 
-% An optional license page. Remove if not used.
-\licensepage
-{
-    ~\vfill\noindent
-    To delo je ponujeno pod licenco \emph{Creative Commons Priznanje avtorstva --- Deljenje} pod
-    enakimi pogoji 2.5 Slovenija (ali novejšo različico). To pomeni, da se tako besedilo, slike,
-    grafi in druge sestavine dela kot tudi rezultati diplomskega dela lahko prosto distribuirajo,
-    reproducirajo, uporabljajo, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno
-    in vidno navede avtorja in naslov tega dela in da se v primeru spremembe, preoblikovanja
-    ali uporabe tega dela v svojem delu, lahko distribuira predelava le pod licenco, ki je enaka
-    tej. Podrobnosti licence so dostopne na spletni strani \url{http://creativecommons.si/} ali na
-    Inštitutu za intelektualno lastnino, Streliška 1, 1000 Ljubljana.
-
-    \begin{center}
-        \Huge\ccbysa
-    \end{center}
-    
-    \medskip\noindent
-    Izvorna koda diplomskega dela, njeni rezultati in v ta namen razvita programska oprema je
-    ponujena pod licenco GNU General Public License, različica 3 (alinovejša). To pomeni,
-    da se lahko prosto distribuira in/ali predeluje pod njenimi pogoji. Podrobnosti licence so
-    dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
-}
+% An optional license page.
+%\input{licenca.tex}
 
 % The list of abbreviations. Remove if not used.
 \abbreviation{SSH}{Secure Shell Protocol}
@@ -81,7 +60,12 @@
 \begin{document}
     % Thesis chapters.
     \input{uvod.tex}
+    \input{tehnicni-predpisi.tex}
     \input{metodologija.tex}
+
+    % English version must also contain an extended Slovene abstract,
+    % 4,000 - 10,000 characters including spaces.
+    %\input{abstract.tex}
 
     % Optional appendices. Remove if not used.
     \input{priloga.tex}

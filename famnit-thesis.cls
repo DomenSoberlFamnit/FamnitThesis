@@ -3,7 +3,7 @@
 % and Information Technologies, University of Primorska.
 %
 % Author: Domen Šoberl
-% Date: September 2022
+% Date: June 2023
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{famnit-thesis}[2022/07/26 Famnit bachelor thesis]
@@ -32,11 +32,15 @@
 \RequirePackage{caption}
 \RequirePackage{refcount}
 \RequirePackage{tabularx}
+\RequirePackage{enumitem}
 \RequirePackage{rotating}
 \RequirePackage[absolute]{textpos}
 \RequirePackage[implicit=false]{hyperref}
 \RequirePackage{colortbl}
-\usepackage[numbib,notlof,notlot,nottoc]{tocbibind}
+\RequirePackage[numbib,notlof,notlot,nottoc]{tocbibind}
+
+% Remove list item separation globally.
+\setlist{noitemsep}
 
 % Load the babel according to the used language.
 \ifdefined\@langeng
@@ -102,8 +106,8 @@
 
 % Set the document margins.
 \geometry{
-    top=3cm,
-    left=3cm,
+    top=2.5cm,
+    left=2.5cm,
     right=2.5cm,
     bottom=2.5cm,
     headheight=1.5cm
@@ -128,9 +132,13 @@
 
 % Set the chapter title format.
 \titleformat{\chapter}
-    {\LARGE\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
-\titlespacing*{\chapter}
-    {0pt}{-\topskip}{*2}
+    {\Large\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
+    \titlespacing*{\chapter}{0pt}{-\topskip}{*2}
+
+% Set the section title format.
+\titleformat{\section}
+    {\large\bf}{\thesection}{1em}{\thispagestyle{fancy}}
+    \titlespacing*{\section}{0pt}{1.5em}{1em}
 
 % Redefine the figure and table caption, so it is left-aligned,
 % a bit smaller and with some spacing above and below.
@@ -223,8 +231,8 @@
     \thispagestyle{empty}
     \newgeometry{
         top=3cm,
-        left=3cm,
-        right=2.5cm,
+        left=3.5cm,
+        right=3.5cm,
         bottom=2.5cm
     }
     \begin{center}
@@ -247,15 +255,6 @@
     \begin{flushright}
         \large\MakeUppercase{\@authorname~\@authorsurname}
     \end{flushright}
-    \begin{textblock*}{237mm}(10mm,30mm)
-        \begin{sideways}
-            \begin{tabularx}{240mm}{c>{\centering}Xc}
-                \large\MakeUppercase{\@authorsurname} &
-                \large ZAKLJUČNA NALOGA \@lang{}{(FINAL PROJECT PAPER)} &
-                \large\@dateyear
-            \end{tabularx}
-        \end{sideways}
-    \end{textblock*}
     \restoregeometry
 }
 
@@ -298,7 +297,7 @@
     \fi
     \par\vfill
     \begin{center}
-        \large Koper, \@datemonth~\@dateyear
+        \large Koper, \@dateyear
     \end{center}
     \restoregeometry
 }
@@ -314,8 +313,7 @@
             \vspace{0.2cm}
             \noindent
             Ime in PRIIMEK:~\@authorname~\MakeUppercase{\@authorsurname}\newline
-            Naslov zaključne naloge:\newline
-            {\@titleslo}\newline
+            Naslov zaključne naloge:~{\@titleslo}\newline
             Kraj:~Koper\newline
             Leto:~\@dateyear
         }
@@ -361,8 +359,7 @@
             \vspace{0.2cm}
             \noindent
             Name and SURNAME:~\@authorname~\MakeUppercase{\@authorsurname}\newline
-            Title of the final project paper:\newline
-            {\@titleeng}\newline
+            Title of the final project paper:~{\@titleeng}\newline
             Place:~Koper\newline
             Year:~\@dateyear
         }
