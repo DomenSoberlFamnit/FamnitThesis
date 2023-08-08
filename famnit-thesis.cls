@@ -483,9 +483,9 @@
 % This version also prints out "and references" in the title.
 \newcommand{\page@bibliographystar}{
     \ifdefined\@langeng
-        \renewcommand{\bibname}{Bibliography and references}
+        \renewcommand{\bibname}{BIBLIOGRAPHY AND REFERENCES}
     \else
-        \renewcommand{\bibname}{Literatura in viri}
+        \renewcommand{\bibname}{LITERATURA IN VIRI}
     \fi
     \IfFileExists{bibliography.bib}{
         \bibliographystyle{plain}
@@ -499,9 +499,9 @@
 % This version prints out just "Bibliography" in the title.
 \newcommand{\page@bibliographynostar}{
     \ifdefined\@langeng
-        \renewcommand{\bibname}{Bibliography}
+        \renewcommand{\bibname}{BIBLIOGRAPHY}
     \else
-        \renewcommand{\bibname}{Literatura}
+        \renewcommand{\bibname}{LITERATURA}
     \fi
     \IfFileExists{bibliography.bib}{
         \bibliographystyle{plain}
