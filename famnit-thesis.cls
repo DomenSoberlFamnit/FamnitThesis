@@ -96,6 +96,7 @@
 
 % Counters used to automatize collecting certain information about the thesis.
 \newcounter{counter@allpages}          % The number of all pages.
+\newcounter{counter@contentpages}      % The number of content pages.
 \newcounter{counter@figures}           % The number of figures.
 \newcounter{counter@tables}            % The number of tables.
 \newcounter{counter@appendixstartpage} % On which page the appendices start.
@@ -129,6 +130,16 @@
 \lfoot{}
 \cfoot{}
 \rfoot{}
+
+% Redefine the entry prefix for the list of figures.
+\renewcommand{\cftfigpresnum}{\figurename~}
+\setlength{\cftfignumwidth}{5em}
+\renewcommand{\cftfigaftersnum}{:}
+
+% Redefine the entry prefix for the list of tables.
+\renewcommand{\cfttabpresnum}{\tablename~}
+\setlength{\cfttabnumwidth}{5em}
+\renewcommand{\cfttabaftersnum}{:}
 
 % Set the chapter title format.
 \titleformat{\chapter}
@@ -306,6 +317,8 @@
 \newcommand{\page@information}{
     % The Slovene version of the information page.
     \clearpage
+    \pagenumbering{Roman}
+    \setcounter{page}{2}
     \section*{Ključna dokumentacijska informacija}
     \begin{framed}
         \setstretch{2}
@@ -319,7 +332,7 @@
         }
         \par\vspace{1.5em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Število listov:~\ref{value@allpages}}
+            \parbox{0.49\linewidth}{Število strani:~\ref{value@contentpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Število slik:~\ref{value@figures}}
             \fi
@@ -365,7 +378,7 @@
         }
         \par\vspace{1.5em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Number of pages:~\ref{value@allpages}}
+            \parbox{0.49\linewidth}{Number of pages:~\ref{value@contentpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Number of figures:~\ref{value@figures}}
             \fi
@@ -401,8 +414,11 @@
 % If there is no acknowledgment, the macro has no effect.
 \newcommand{\page@acknowledgments}{
     \ifdefined\@acknowledgments
+        \clearpage
+        \pagenumbering{gobble}
         \chapter*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
+        %\thispagestyle{empty}
         {\@acknowledgments}
     \fi
 }
@@ -541,6 +557,12 @@
     \stepcounter{counter@tables}
 }
 
+% The macro to indicate where the content ends.
+\newcommand{\backmatter}{
+    \setcounter{counter@contentpages}{\value{page}}
+    \addtocounter{counter@contentpages}{-1}
+}
+
 % At document begin execute all the macros that build information pages.
 % The cover page is excluded from the the number of pages.
 \AtBeginDocument{
@@ -551,8 +573,8 @@
     \maketitle
     
     \page@licenses
-    \page@information
     \page@acknowledgments
+    \page@information
     \page@contents
     \page@tables
     \page@figures
@@ -578,11 +600,13 @@
         \fi
     \fi
 
-    % Save the counter of all pages.
+    % Adjust the counter of all pages.
     \addtocounter{counter@allpages}{\value{page}}
-    \addtocounter{counter@allpages}{-1}
-    \refstepcounter{counter@allpages}
-    \label{value@allpages}
+    %\addtocounter{counter@allpages}{-1}
+
+    % Save the counter of content pages.
+    \refstepcounter{counter@contentpages}
+    \label{value@contentpages}
 
     % Save the counter of figures.
     \addtocounter{counter@figures}{-1}
