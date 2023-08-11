@@ -332,7 +332,7 @@
         }
         \par\vspace{1.5em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Število strani:~\ref{value@contentpages}}
+            \parbox{0.49\linewidth}{Število strani:~\ref{value@numpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Število slik:~\ref{value@figures}}
             \fi
@@ -378,7 +378,7 @@
         }
         \par\vspace{1.5em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Number of pages:~\ref{value@contentpages}}
+            \parbox{0.49\linewidth}{Number of pages:~\ref{value@numpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Number of figures:~\ref{value@figures}}
             \fi
@@ -418,7 +418,6 @@
         \pagenumbering{gobble}
         \chapter*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
-        %\thispagestyle{empty}
         {\@acknowledgments}
     \fi
 }
@@ -428,6 +427,7 @@
 \newcommand{\page@licenses}{
     \ifdefined\@licensepage
         \clearpage
+        \addtocounter{counter@allpages}{1}
         \thispagestyle{empty}
         {\@licensepage}
     \fi
@@ -559,8 +559,9 @@
 
 % The macro to indicate where the content ends.
 \newcommand{\backmatter}{
-    \setcounter{counter@contentpages}{\value{page}}
-    \addtocounter{counter@contentpages}{-1}
+   \setcounter{counter@contentpages}{\value{page}}
+   \addtocounter{counter@contentpages}{-1}
+   \def\@hasbackmatter{}
 }
 
 % At document begin execute all the macros that build information pages.
@@ -600,9 +601,18 @@
         \fi
     \fi
 
-    % Adjust the counter of all pages.
+    % Save the counter of all pages.
     \addtocounter{counter@allpages}{\value{page}}
-    %\addtocounter{counter@allpages}{-1}
+    \refstepcounter{counter@allpages}
+    \label{value@allpages}
+
+    % Save the page numbers.
+    \ifdefined\@hasbackmatter
+        \refstepcounter{counter@contentpages}
+    \else
+        \refstepcounter{counter@allpages}
+    \fi
+    \label{value@numpages}
 
     % Save the counter of content pages.
     \refstepcounter{counter@contentpages}
