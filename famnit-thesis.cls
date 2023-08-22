@@ -107,8 +107,8 @@
 
 % Set the document margins.
 \geometry{
-    top=2.5cm,
-    left=2.5cm,
+    top=3.3cm,
+    left=3cm,
     right=2.5cm,
     bottom=2.5cm,
     headheight=1.5cm
@@ -143,8 +143,8 @@
 
 % Set the chapter title format.
 \titleformat{\chapter}
-    {\Large\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
-    \titlespacing*{\chapter}{0pt}{-\topskip}{*2}
+    {\vspace{30pt}\Huge\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
+    \titlespacing*{\chapter}{0pt}{-\topskip}{*5}
 
 % Set the section title format.
 \titleformat{\section}
@@ -244,7 +244,7 @@
         top=3cm,
         left=3.5cm,
         right=3.5cm,
-        bottom=2.5cm
+        bottom=3cm
     }
     \begin{center}
         \large
