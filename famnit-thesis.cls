@@ -143,7 +143,7 @@
 
 % Set the chapter title format.
 \titleformat{\chapter}
-    {\vspace{30pt}\Huge\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
+    {\vspace{30pt}\Large\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
     \titlespacing*{\chapter}{0pt}{-\topskip}{*5}
 
 % Set the section title format.
@@ -416,7 +416,8 @@
     \ifdefined\@acknowledgments
         \clearpage
         \pagenumbering{gobble}
-        \chapter*{\@lang{Zahvala}{Acknowledgments}}
+        ~\par
+        \section*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
         {\@acknowledgments}
     \fi
