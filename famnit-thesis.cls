@@ -3,10 +3,10 @@
 % and Information Technologies, University of Primorska.
 %
 % Author: Domen Šoberl
-% Date: June 2023
+% Date: August 2024
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{famnit-thesis}[2022/07/26 Famnit bachelor thesis]
+\ProvidesClass{famnit-thesis}[2024/08/18 Famnit bachelor thesis]
 \LoadClass[a4paper,12pt]{report}
 
 % Template options:
@@ -143,8 +143,8 @@
 
 % Set the chapter title format.
 \titleformat{\chapter}
-    {\vspace{30pt}\Large\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
-    \titlespacing*{\chapter}{0pt}{-\topskip}{*5}
+    {\vspace{0pt}\Large\bf}{\thechapter}{1em}{\thispagestyle{fancy}}
+    \titlespacing*{\chapter}{0pt}{-\topskip}{*3}
 
 % Set the section title format.
 \titleformat{\section}
@@ -317,11 +317,10 @@
 \newcommand{\page@information}{
     % The Slovene version of the information page.
     \clearpage
-    \pagenumbering{Roman}
-    \setcounter{page}{2}
     \section*{Ključna dokumentacijska informacija}
+    \vspace{-1em}
     \begin{framed}
-        \setstretch{2}
+        \setstretch{1.7}
         \noindent\parbox{\linewidth}{\raggedright
             \vspace{0.2cm}
             \noindent
@@ -330,9 +329,9 @@
             Kraj:~Koper\newline
             Leto:~\@dateyear
         }
-        \par\vspace{1.5em}\noindent
+        \par\vspace{1.1em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Število strani:~\ref{value@numpages}}
+            \parbox{0.49\linewidth}{Število strani:~\ref{value@contentpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Število slik:~\ref{value@figures}}
             \fi
@@ -345,7 +344,7 @@
             \fi
             \parbox{0.49\linewidth}{Število referenc:~\ref{value@bibitems}}
         }
-        \par\vspace{1.5em}\noindent
+        \par\vspace{1.1em}\noindent
         \parbox{\linewidth}{\raggedright
             Mentor:~\@mentorslo\newline
             \ifdefined\@hascomentor
@@ -366,8 +365,9 @@
     % The English version of the information page.
     \newpage
     \section*{Key document information}
+    \vspace{-1em}
     \begin{framed}
-        \setstretch{2}
+        \setstretch{1.7}
         \noindent\parbox{\linewidth}{\raggedright
             \vspace{0.2cm}
             \noindent
@@ -376,9 +376,9 @@
             Place:~Koper\newline
             Year:~\@dateyear
         }
-        \par\vspace{1.5em}\noindent
+        \par\vspace{1.3em}\noindent
         \parbox{\linewidth}{\raggedright
-            \parbox{0.49\linewidth}{Number of pages:~\ref{value@numpages}}
+            \parbox{0.49\linewidth}{Number of pages:~\ref{value@contentpages}}
             \ifnum\getrefnumber{value@figures}>0
                 \parbox{0.49\linewidth}{Number of figures:~\ref{value@figures}}
             \fi
@@ -391,7 +391,7 @@
             \fi
             \parbox{0.49\linewidth}{Number of references:~\ref{value@bibitems}}
         }
-        \par\vspace{1.5em}\noindent
+        \par\vspace{1.1em}\noindent
         \parbox{\linewidth}{\raggedright
             Mentor:~\@mentoreng\newline
             \ifdefined\@hascomentor
@@ -415,7 +415,8 @@
 \newcommand{\page@acknowledgments}{
     \ifdefined\@acknowledgments
         \clearpage
-        \pagenumbering{gobble}
+        \pagenumbering{Roman}
+        \setcounter{page}{1}
         ~\par
         \section*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
@@ -606,14 +607,6 @@
     \addtocounter{counter@allpages}{\value{page}}
     \refstepcounter{counter@allpages}
     \label{value@allpages}
-
-    % Save the page numbers.
-    \ifdefined\@hasbackmatter
-        \refstepcounter{counter@contentpages}
-    \else
-        \refstepcounter{counter@allpages}
-    \fi
-    \label{value@numpages}
 
     % Save the counter of content pages.
     \refstepcounter{counter@contentpages}
