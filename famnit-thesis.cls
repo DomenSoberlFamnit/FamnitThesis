@@ -417,7 +417,6 @@
         \clearpage
         \pagenumbering{Roman}
         \setcounter{page}{1}
-        ~\par
         \section*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
         {\@acknowledgments}
