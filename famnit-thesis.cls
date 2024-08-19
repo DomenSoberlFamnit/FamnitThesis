@@ -132,14 +132,14 @@
 \rfoot{}
 
 % Redefine the entry prefix for the list of figures.
-\renewcommand{\cftfigpresnum}{\figurename~}
-\setlength{\cftfignumwidth}{5em}
-\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cftfigpresnum}{}
+\setlength{\cftfignumwidth}{2.5em}
+\renewcommand{\cftfigaftersnum}{}
 
 % Redefine the entry prefix for the list of tables.
-\renewcommand{\cfttabpresnum}{\tablename~}
-\setlength{\cfttabnumwidth}{5em}
-\renewcommand{\cfttabaftersnum}{:}
+\renewcommand{\cfttabpresnum}{}
+\setlength{\cfttabnumwidth}{2.5em}
+\renewcommand{\cfttabaftersnum}{}
 
 % Set the chapter title format.
 \titleformat{\chapter}
