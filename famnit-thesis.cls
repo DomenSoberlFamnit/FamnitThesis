@@ -38,6 +38,10 @@
 \RequirePackage[implicit=false]{hyperref}
 \RequirePackage{colortbl}
 \RequirePackage[numbib,notlof,notlot,nottoc]{tocbibind}
+\RequirePackage{amsmath}
+\RequirePackage{ccicons}
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
 
 % Remove list item separation globally.
 \setlist{noitemsep}
@@ -148,7 +152,13 @@
 
 % Set the section title format.
 \titleformat{\section}
-    {\large\bf}{\thesection}{1em}{\thispagestyle{fancy}}
+    {\large\bf}{\thesection}{1em}{
+        \ifdefined\@hasappendices
+            \thispagestyle{empty}
+        \else
+            \thispagestyle{fancy}
+        \fi
+    }
     \titlespacing*{\section}{0pt}{1.5em}{1em}
 
 % Redefine the figure and table caption, so it is left-aligned,
@@ -167,7 +177,7 @@
 
 % The exported macro for the user to add an abbreviation.
 \newcommand{\abbreviation}[2]{
-    \addcontentsline{abbr}{abbreviations}{\parbox{2.5cm}{#1}#2}
+    \addcontentsline{abbr}{abbreviations}{\parbox{2.5cm}{\emph{#1}}#2}
     \stepcounter{counter@abbreviations}
 }
 
@@ -181,8 +191,6 @@
 % second argument is the appendix title (description).
 \renewcommand{\appendix}[2]{
     \ifdefined\@hasappendices
-        % If this is not the first appendix, just start a new page.
-        \clearpage
     \else
         % If this is the first appendix, add a title and determine
         % that this thesis has appendices. But before that, also
@@ -196,17 +204,27 @@
         \addtocounter{counter@allpages}{\value{page}}
         \setcounter{counter@appendixstartpage}{\value{counter@allpages}}
         \clearpage
-        \pagenumbering{gobble}
-        \thispagestyle{empty}
         \pagestyle{empty}
+        ~\\
+        \vspace{10cm}
+        \begin{center}
+            \ifdefined\@langeng
+                \noindent\bf\Huge{Appendices}
+            \else
+                \noindent\bf\Huge{Priloge}
+            \fi
+        \end{center}
     \fi
-    \addcontentsline{apc}{appendices}{#1\hspace{2em}#2\vspace{0.5em}}
+    \clearpage
+    \pagestyle{empty}
+    \thispagestyle{empty}
     {\Large\bf\noindent{#1}}
-    \par\vspace{0.5em}
-    \noindent{\large{#2}}
-    \par\vspace{1em}
-    \@afterindentfalse
-    \@afterheading
+    \hspace{1em}
+    {\Large{#2}}
+    \par\vspace{2em}
+    %\@afterindentfalse
+    %\@afterheading
+    \addcontentsline{apc}{appendices}{#1\hspace{2em}#2\vspace{0.5em}}
     \stepcounter{counter@appendices}
 }
 
@@ -575,8 +593,8 @@
     \maketitle
     
     \page@licenses
-    \page@acknowledgments
     \page@information
+    \page@acknowledgments
     \page@contents
     \page@tables
     \page@figures
