@@ -221,7 +221,7 @@
     {\Large\bf\noindent{#1}}
     \hspace{1em}
     {\Large{#2}}
-    \par\vspace{2em}
+    \par\vspace{2em}    
     %\@afterindentfalse
     %\@afterheading
     \addcontentsline{apc}{appendices}{#1\hspace{2em}#2\vspace{0.5em}}
@@ -335,6 +335,8 @@
 \newcommand{\page@information}{
     % The Slovene version of the information page.
     \clearpage
+    \pagenumbering{Roman}
+    \setcounter{page}{2}
     \section*{Ključna dokumentacijska informacija}
     \vspace{-1em}
     \begin{framed}
@@ -433,8 +435,6 @@
 \newcommand{\page@acknowledgments}{
     \ifdefined\@acknowledgments
         \clearpage
-        \pagenumbering{Roman}
-        \setcounter{page}{1}
         \section*{\@lang{Zahvala}{Acknowledgments}}
         \par\bigskip
         {\@acknowledgments}
@@ -536,7 +536,7 @@
     \ifdefined\@langeng
         \renewcommand{\bibname}{BIBLIOGRAPHY}
     \else
-        \renewcommand{\bibname}{LITERATURA}
+        \renewcommand{\bibname}{Literatura}
     \fi
     \IfFileExists{bibliography.bib}{
         \bibliographystyle{plain}
